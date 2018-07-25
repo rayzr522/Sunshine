@@ -127,11 +127,4 @@ public class Sunshine extends JavaPlugin {
         return true;
     }
 
-    /**
-     * @return The {@link MessageHandler} instance for this plugin
-     */
-    public MessageHandler getMessages() {
-        return messages;
-    }
-
 }
