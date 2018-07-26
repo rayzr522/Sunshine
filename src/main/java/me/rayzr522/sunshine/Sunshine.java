@@ -2,6 +2,7 @@ package me.rayzr522.sunshine;
 
 import me.rayzr522.sunshine.data.PlayerSettingsManager;
 import me.rayzr522.sunshine.data.Settings;
+import me.rayzr522.sunshine.event.PlayerListener;
 import me.rayzr522.sunshine.task.PlaytimeCheckTask;
 import me.rayzr522.sunshine.utils.MessageHandler;
 import org.bukkit.command.CommandSender;
@@ -33,6 +34,8 @@ public class Sunshine extends JavaPlugin {
         instance = this;
 
         reload();
+
+        getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
 
         // TODO: Command registration.
     }
