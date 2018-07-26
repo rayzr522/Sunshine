@@ -1,5 +1,7 @@
 package me.rayzr522.sunshine;
 
+import me.rayzr522.sunshine.data.PlayerSettingsManager;
+import me.rayzr522.sunshine.data.Settings;
 import me.rayzr522.sunshine.utils.MessageHandler;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -14,7 +16,10 @@ import java.util.logging.Level;
  */
 public class Sunshine extends JavaPlugin {
     private static Sunshine instance;
-    private MessageHandler messages = new MessageHandler();
+
+    private final Settings settings = new Settings();
+    private final MessageHandler messages = new MessageHandler();
+    private final PlayerSettingsManager playerSettingsManager = new PlayerSettingsManager();
 
     public static Sunshine getInstance() {
         return instance;
@@ -30,6 +35,8 @@ public class Sunshine extends JavaPlugin {
     @Override
     public void onDisable() {
         instance = null;
+
+        save();
     }
 
     /**
@@ -39,7 +46,16 @@ public class Sunshine extends JavaPlugin {
         saveDefaultConfig();
         reloadConfig();
 
+        settings.load(getConfig());
         messages.load(getConfig("messages.yml"));
+        playerSettingsManager.load(getConfig("players.yml"));
+    }
+
+    /**
+     * Saves all persistent data to the disk
+     */
+    public void save() {
+        saveConfig(playerSettingsManager.save(), "players.yml");
     }
 
     /**
@@ -127,4 +143,17 @@ public class Sunshine extends JavaPlugin {
         return true;
     }
 
+    /**
+     * @return The settings for this plugin
+     */
+    public Settings getSettings() {
+        return settings;
+    }
+
+    /**
+     * @return The per-player settings manager
+     */
+    public PlayerSettingsManager getPlayerSettingsManager() {
+        return playerSettingsManager;
+    }
 }
