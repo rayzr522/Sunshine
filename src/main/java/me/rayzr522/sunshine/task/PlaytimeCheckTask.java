@@ -1,5 +1,6 @@
-package me.rayzr522.sunshine;
+package me.rayzr522.sunshine.task;
 
+import me.rayzr522.sunshine.Sunshine;
 import me.rayzr522.sunshine.struct.PlayerSettings;
 import me.rayzr522.sunshine.utils.FormatUtils;
 import org.bukkit.Bukkit;
