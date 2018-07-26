@@ -12,4 +12,8 @@ public class Settings {
     public long getCheckDelay() {
         return config.getLong("check-delay");
     }
+
+    public int getRejoinDelay() {
+        return config.getInt("rejoin-delay");
+    }
 }

@@ -1,6 +1,7 @@
 package me.rayzr522.sunshine;
 
 import me.rayzr522.sunshine.struct.PlayerSettings;
+import me.rayzr522.sunshine.utils.FormatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -27,9 +28,15 @@ public class PlaytimeCheckTask extends BukkitRunnable {
             long diff = currentTime - joinTime;
 
             if (diff > TimeUnit.MINUTES.toMillis(settings.getPlaytimeLimit())) {
-                // TODO: Kick them.
+                player.kickPlayer(
+                        plugin.tr("system.kicked", FormatUtils.time(plugin.getSettings().getRejoinDelay()))
+                );
+
+                settings.setKickTime(currentTime);
             } else if (settings.getWarningBufferTime() > 0 && diff > TimeUnit.MINUTES.toMillis(settings.getPlaytimeLimit() - settings.getWarningBufferTime())) {
-                // TODO: Warn them.
+                player.sendMessage(
+                        settings.getWarningMessage().orElse(plugin.tr("system.warn", FormatUtils.time((int) TimeUnit.MILLISECONDS.toMinutes(diff))))
+                );
             }
         });
     }

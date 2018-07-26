@@ -21,6 +21,8 @@ public class Sunshine extends JavaPlugin {
     private final MessageHandler messages = new MessageHandler();
     private final PlayerSettingsManager playerSettingsManager = new PlayerSettingsManager();
 
+    private PlaytimeCheckTask playtimeCheckTask;
+
     public static Sunshine getInstance() {
         return instance;
     }
@@ -30,6 +32,8 @@ public class Sunshine extends JavaPlugin {
         instance = this;
 
         reload();
+
+        // TODO: Command registration.
     }
 
     @Override
@@ -46,9 +50,18 @@ public class Sunshine extends JavaPlugin {
         saveDefaultConfig();
         reloadConfig();
 
+        // Load configs
         settings.load(getConfig());
         messages.load(getConfig("messages.yml"));
         playerSettingsManager.load(getConfig("players.yml"));
+
+        // Setup playtime check task
+        if (playtimeCheckTask != null) {
+            playtimeCheckTask.cancel();
+        }
+
+        playtimeCheckTask = new PlaytimeCheckTask(this);
+        playtimeCheckTask.runTaskTimer(this, 0L, settings.getCheckDelay());
     }
 
     /**

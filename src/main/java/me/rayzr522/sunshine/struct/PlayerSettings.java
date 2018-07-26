@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public class PlayerSettings {
     private transient long joinTime = -1L;
+    private transient long kickTime = -1L;
 
     private boolean enabled = false;
     private int playtimeLimit = 120;
@@ -26,6 +27,12 @@ public class PlayerSettings {
         this.warningMessage = warningMessage;
     }
 
+    /**
+     * Loads a player settings object from a config.
+     *
+     * @param config The config to load from.
+     * @return The loaded player settings object.
+     */
     public static PlayerSettings deserialize(ConfigurationSection config) {
         return new PlayerSettings(
                 config.getBoolean("enabled"),
@@ -49,6 +56,22 @@ public class PlayerSettings {
      */
     public void setJoinTime(long joinTime) {
         this.joinTime = joinTime;
+    }
+
+    /**
+     * @return When the player was kicked by Sunshine, in milliseconds (system time).
+     */
+    public long getKickTime() {
+        return kickTime;
+    }
+
+    /**
+     * Updates the time at which Sunshine kicked the player.
+     *
+     * @param kickTime The new kick time to set, in milliseconds.
+     */
+    public void setKickTime(long kickTime) {
+        this.kickTime = kickTime;
     }
 
     /**

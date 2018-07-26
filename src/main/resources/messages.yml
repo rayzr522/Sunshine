@@ -7,3 +7,10 @@ command:
     only-players: "Only players can use this command!"
     no-player: "The player '%s' does not exist!"
     not-number: "'%s' is not a valid number!"
+
+system:
+  time-format:
+    less-than-an-hour: "%sm"
+    hour-or-more: "%sh %sm"
+  warn: "You will be kicked in &a%s&7!"
+  kicked: "Go get some sunshine! You can come back in &a%s&7."
