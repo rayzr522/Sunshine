@@ -35,7 +35,7 @@ public class PlayerListener implements Listener {
         long diff = now - kickTime;
 
         // Tell them how much time they have left.
-        String message = plugin.tr("system.kicked", FormatUtils.time(plugin.getSettings().getRejoinDelay() - (int) TimeUnit.MILLISECONDS.toMinutes(diff)));
+        String message = plugin.tr("system.kicked", FormatUtils.time(settings.getRejoinDelay() - (int) TimeUnit.MILLISECONDS.toMinutes(diff)));
         e.disallow(PlayerLoginEvent.Result.KICK_OTHER, message);
     }
 

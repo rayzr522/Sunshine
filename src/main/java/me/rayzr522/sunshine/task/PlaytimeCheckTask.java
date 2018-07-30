@@ -29,8 +29,9 @@ public class PlaytimeCheckTask extends BukkitRunnable {
             long diff = currentTime - joinTime;
 
             if (diff > TimeUnit.MINUTES.toMillis(settings.getPlaytimeLimit())) {
+                // TODO: Use different message if there is no rejoin delay.
                 player.kickPlayer(
-                        plugin.tr("system.kicked", FormatUtils.time(plugin.getSettings().getRejoinDelay()))
+                        plugin.tr("system.kicked", FormatUtils.time(settings.getRejoinDelay()))
                 );
 
                 settings.setKickTime(currentTime);

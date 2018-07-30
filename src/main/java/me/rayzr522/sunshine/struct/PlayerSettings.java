@@ -14,16 +14,18 @@ public class PlayerSettings {
     private boolean enabled = false;
     private int playtimeLimit = 120;
     private int warningBufferTime = 10;
+    private int rejoinDelay = 0;
     private String warningMessage;
 
     public PlayerSettings() {
         // For use in creating default player settings for a player
     }
 
-    private PlayerSettings(boolean enabled, int playtimeLimit, int warningBufferTime, String warningMessage) {
+    private PlayerSettings(boolean enabled, int playtimeLimit, int warningBufferTime, int rejoinDelay, String warningMessage) {
         this.enabled = enabled;
         this.playtimeLimit = playtimeLimit;
         this.warningBufferTime = warningBufferTime;
+        this.rejoinDelay = rejoinDelay;
         this.warningMessage = warningMessage;
     }
 
@@ -38,6 +40,7 @@ public class PlayerSettings {
                 config.getBoolean("enabled"),
                 config.getInt("playtime-limit", 120),
                 config.getInt("warning-buffer-time", 10),
+                config.getInt("rejoin-delay", 0),
                 config.getString("warning-message")
         );
     }
@@ -98,6 +101,15 @@ public class PlayerSettings {
     }
 
     /**
+     * This is how many minutes the player has to wait to rejoin.
+     *
+     * @return The player's rejoin delay, in minutes.
+     */
+    public int getRejoinDelay() {
+        return rejoinDelay;
+    }
+
+    /**
      * @return The custom warning message to show the user.
      */
     public Optional<String> getWarningMessage() {
@@ -111,6 +123,7 @@ public class PlayerSettings {
         output.put("enabled", enabled);
         output.put("playtime-limit", playtimeLimit);
         output.put("warning-buffer-time", warningBufferTime);
+        output.put("rejoin-delay", rejoinDelay);
         output.put("warning-message", warningMessage);
         return output;
     }

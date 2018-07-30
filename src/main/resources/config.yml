@@ -1,5 +1,2 @@
 # The delay in ticks to check for user playtime. (default: 1200, e.g. 1 minute)
 check-delay: 1200
-
-# The number of minutes you have to wait before rejoining
-rejoin-delay: 60
