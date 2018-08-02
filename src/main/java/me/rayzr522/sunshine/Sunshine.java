@@ -6,8 +6,10 @@ import me.rayzr522.sunshine.data.Settings;
 import me.rayzr522.sunshine.event.PlayerListener;
 import me.rayzr522.sunshine.task.PlaytimeCheckTask;
 import me.rayzr522.sunshine.utils.MessageHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -59,6 +61,12 @@ public class Sunshine extends JavaPlugin {
         settings.load(getConfig());
         messages.load(getConfig("messages.yml"));
         playerSettingsManager.load(getConfig("players.yml"));
+
+        long now = System.currentTimeMillis();
+        Bukkit.getOnlinePlayers().stream()
+                .map(Player::getUniqueId)
+                .map(playerSettingsManager::getPlayerSettings)
+                .forEach(settings -> settings.setJoinTime(now));
 
         // Setup playtime check task
         if (playtimeCheckTask != null) {
