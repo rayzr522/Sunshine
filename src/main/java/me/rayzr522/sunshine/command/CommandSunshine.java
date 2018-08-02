@@ -47,7 +47,9 @@ public class CommandSunshine implements CommandExecutor {
                     break;
                 }
 
+                plugin.save();
                 plugin.reload();
+
                 sender.sendMessage(plugin.tr("command.sunshine.reloaded"));
                 break;
             case "info":

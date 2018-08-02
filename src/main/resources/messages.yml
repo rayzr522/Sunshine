@@ -18,6 +18,7 @@ command:
       &7/sunshine playtime-limit <time> &8-&f Sets your playtime limit.
       &7/sunshine warning-buffer-time <time> &8-&f Sets your warning buffer time.
       &7/sunshine rejoin-delay <time> &8-&f Sets your rejoin delay.
+      &7/sunshine warning-message [message] &8-&f Sets or removes a custom warning message.
     version: "You are running &ev%s&7 of &eSunshine&7."
     reloaded: "Config has been reloaded."
     info: |
