@@ -26,6 +26,8 @@ command:
       &6Playtime limit: &c%s
       &6Rejoin delay: &c%s
       &6Warning buffer time: &c%s
+      &6Time since joining: &c%s
+      &6Time until playtime limit: &c%s
       &6Custom warning message: &f%s
     enabled: "Sunshine has been &aenabled&7."
     disabled: "Sunshine has been &cdisabled&7."

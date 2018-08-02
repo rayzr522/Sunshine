@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 public class CommandSunshine implements CommandExecutor {
     private final Sunshine plugin;
@@ -50,12 +51,17 @@ public class CommandSunshine implements CommandExecutor {
                 sender.sendMessage(plugin.tr("command.sunshine.reloaded"));
                 break;
             case "info":
+                long now = System.currentTimeMillis();
+                int minutesSinceJoin = (int) TimeUnit.MILLISECONDS.toMinutes(now - settings.getJoinTime());
+
                 sender.sendMessage(plugin.trRaw(
                         "command.sunshine.info",
                         plugin.trRaw(String.format("system.constants.%s", settings.isEnabled() ? "enabled" : "disabled")),
                         FormatUtils.time(settings.getPlaytimeLimit()),
                         FormatUtils.time(settings.getRejoinDelay()),
                         FormatUtils.time(settings.getWarningBufferTime()),
+                        FormatUtils.time(minutesSinceJoin),
+                        FormatUtils.time(settings.getPlaytimeLimit() - minutesSinceJoin),
                         settings.getWarningMessage().orElse(plugin.trRaw("system.constants.none"))
                 ));
                 break;
