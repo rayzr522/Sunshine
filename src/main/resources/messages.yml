@@ -53,3 +53,4 @@ system:
     hour-or-more: "%sh %sm"
   warn: "You will be kicked in &a%s&7!"
   kicked: "Go get some sunshine! You can come back in &a%s&7."
+  kicked-no-delay: "Go get some sunshine! You can come back whenever you want."
