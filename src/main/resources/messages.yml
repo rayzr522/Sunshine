@@ -40,6 +40,9 @@ command:
       usage: "Usage: &e/sunshine rejoin-delay <time, minimum 0>"
       invalid: "Invalid playtime limit! It must be at least 0 minutes. If you set it to 0 minutes, the rejoin delay will be disabled."
       set: "Set your rejoin delay to &e%s&7."
+    warning-message:
+      set: "Set your warning message to: &f%s"
+      removed: "Removed your warning message."
 
 system:
   constants:

@@ -3,10 +3,13 @@ package me.rayzr522.sunshine.command;
 import me.rayzr522.sunshine.Sunshine;
 import me.rayzr522.sunshine.struct.PlayerSettings;
 import me.rayzr522.sunshine.utils.FormatUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.Arrays;
 
 public class CommandSunshine implements CommandExecutor {
     private final Sunshine plugin;
@@ -133,6 +136,17 @@ public class CommandSunshine implements CommandExecutor {
                 settings.setRejoinDelay(rejoinDelay);
                 plugin.save();
                 sender.sendMessage(plugin.tr("command.sunshine.rejoin-delay.set", FormatUtils.time(rejoinDelay)));
+                break;
+            case "warning-message":
+                if (args.length < 2) {
+                    settings.setWarningMessage(null);
+                    sender.sendMessage(plugin.tr("command.sunshine.warning-message.removed"));
+                } else {
+                    String warningMessage = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
+                    settings.setWarningMessage(warningMessage);
+                    sender.sendMessage(plugin.tr("command.sunshine.warning-message.set", ChatColor.translateAlternateColorCodes('&', warningMessage)));
+                }
+                plugin.save();
                 break;
             default:
                 showUsage(sender);
