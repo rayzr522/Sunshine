@@ -1,4 +1,4 @@
-: me.rayzr522.sunshine.Sunshine
+main: me.rayzr522.sunshine.Sunshine
 name: Sunshine
 version: 1.0.0
 description: A Bukkit plugin to remind you to go outside and get some sunshine!
