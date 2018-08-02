@@ -55,7 +55,8 @@ public class CommandSunshine implements CommandExecutor {
                         plugin.trRaw(String.format("system.constants.%s", settings.isEnabled() ? "enabled" : "disabled")),
                         FormatUtils.time(settings.getPlaytimeLimit()),
                         FormatUtils.time(settings.getRejoinDelay()),
-                        FormatUtils.time(settings.getWarningBufferTime())
+                        FormatUtils.time(settings.getWarningBufferTime()),
+                        settings.getWarningMessage().orElse(plugin.trRaw("system.constants.none"))
                 ));
                 break;
             case "enable":

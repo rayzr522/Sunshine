@@ -26,6 +26,7 @@ command:
       &6Playtime limit: &c%s
       &6Rejoin delay: &c%s
       &6Warning buffer time: &c%s
+      &6Custom warning message: &f%s
     enabled: "Sunshine has been &aenabled&7."
     disabled: "Sunshine has been &cdisabled&7."
     playtime-limit:
@@ -41,13 +42,14 @@ command:
       invalid: "Invalid playtime limit! It must be at least 0 minutes. If you set it to 0 minutes, the rejoin delay will be disabled."
       set: "Set your rejoin delay to &e%s&7."
     warning-message:
-      set: "Set your warning message to: &f%s"
-      removed: "Removed your warning message."
+      set: "Set your custom warning message to: &f%s"
+      removed: "Removed your custom warning message."
 
 system:
   constants:
     enabled: "&aenabled"
     disabled: "&cdisabled"
+    none: "&cnone"
   time-format:
     less-than-an-hour: "%sm"
     hour-or-more: "%sh %sm"
