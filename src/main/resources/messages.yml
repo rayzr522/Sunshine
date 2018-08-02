@@ -7,6 +7,14 @@ command:
     only-players: "Only players can use this command!"
     no-player: "The player '%s' does not exist!"
     not-number: "'%s' is not a valid number!"
+  sunshine:
+    usage: |
+      &8&m-----&e Sunshine &8&m-----
+      &7/sunshine help &8-&f Shows this help message.
+      &7/sunshine version &8-&f Shows the version of Sunshine.
+      &7/sunshine reload &8-&f Reloads Sunshine's config files.
+    version: "You are running v%s of Sunshine."
+    reloaded: "Config has been reloaded."
 
 system:
   time-format:

@@ -1,5 +1,6 @@
 package me.rayzr522.sunshine;
 
+import me.rayzr522.sunshine.command.CommandSunshine;
 import me.rayzr522.sunshine.data.PlayerSettingsManager;
 import me.rayzr522.sunshine.data.Settings;
 import me.rayzr522.sunshine.event.PlayerListener;
@@ -37,7 +38,7 @@ public class Sunshine extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
 
-        // TODO: Command registration.
+        getCommand("sunshine").setExecutor(new CommandSunshine(this));
     }
 
     @Override

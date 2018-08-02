@@ -3,8 +3,8 @@ name: Sunshine
 version: 1.0.0
 description: A Bukkit plugin to remind you to go outside and get some sunshine!
 author: Rayzr
-#commands:
-#  sunshine:
-#    description: The main command for Sunshine
-#    aliases: [alias1,alias2]
-#    usage: "\u00A7cRayzr fracked something up."
+commands:
+  sunshine:
+    description: The main command for Sunshine.
+    aliases: [ss, suns]
+    usage: "\u00A7cRayzr fracked something up."
