@@ -37,7 +37,7 @@ public class PlaytimeCheckTask extends BukkitRunnable {
                 settings.setKickTime(currentTime);
             } else if (settings.getWarningBufferTime() > 0 && diff > TimeUnit.MINUTES.toMillis(settings.getPlaytimeLimit() - settings.getWarningBufferTime())) {
                 player.sendMessage(
-                        settings.getWarningMessage().orElse(plugin.tr("system.warn", FormatUtils.time((int) TimeUnit.MILLISECONDS.toMinutes(diff))))
+                        settings.getWarningMessage().orElse(plugin.tr("system.warn", FormatUtils.time(settings.getWarningBufferTime())))
                 );
             }
         });
