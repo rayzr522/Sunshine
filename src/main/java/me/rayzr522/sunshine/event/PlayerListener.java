@@ -26,6 +26,11 @@ public class PlayerListener implements Listener {
         }
 
         PlayerSettings settings = plugin.getPlayerSettingsManager().getPlayerSettings(player.getUniqueId());
+        int rejoinDelay = settings.getRejoinDelay();
+        if (rejoinDelay < 1) {
+            return;
+        }
+
         long kickTime = settings.getKickTime();
         if (kickTime < 0) {
             return;
@@ -34,9 +39,11 @@ public class PlayerListener implements Listener {
         long now = System.currentTimeMillis();
         long diff = now - kickTime;
 
-        // Tell them how much time they have left.
-        String message = plugin.tr("system.kicked", FormatUtils.time(settings.getRejoinDelay() - (int) TimeUnit.MILLISECONDS.toMinutes(diff)));
-        e.disallow(PlayerLoginEvent.Result.KICK_OTHER, message);
+        if (diff < TimeUnit.MINUTES.toMillis(rejoinDelay)) {
+            // Tell them how much time they have left.
+            String message = plugin.tr("system.kicked", FormatUtils.time(rejoinDelay - (int) TimeUnit.MILLISECONDS.toMinutes(diff)));
+            e.disallow(PlayerLoginEvent.Result.KICK_OTHER, message);
+        }
     }
 
     @EventHandler

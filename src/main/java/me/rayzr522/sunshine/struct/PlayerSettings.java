@@ -85,10 +85,28 @@ public class PlayerSettings {
     }
 
     /**
+     * Sets whether or not Sunshine is enabled for this player.
+     *
+     * @param enabled Whether or not Sunshine is enabled for this player.
+     */
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    /**
      * @return This player's playtime limit, in minutes.
      */
     public int getPlaytimeLimit() {
         return playtimeLimit;
+    }
+
+    /**
+     * Sets the playtime limit.
+     *
+     * @param playtimeLimit Sets the new playtime limit.
+     */
+    public void setPlaytimeLimit(int playtimeLimit) {
+        this.playtimeLimit = playtimeLimit;
     }
 
     /**
@@ -101,6 +119,15 @@ public class PlayerSettings {
     }
 
     /**
+     * Sets the warning buffer time.
+     *
+     * @param warningBufferTime The new warning buffer time to set.
+     */
+    public void setWarningBufferTime(int warningBufferTime) {
+        this.warningBufferTime = warningBufferTime;
+    }
+
+    /**
      * This is how many minutes the player has to wait to rejoin.
      *
      * @return The player's rejoin delay, in minutes.
@@ -110,12 +137,29 @@ public class PlayerSettings {
     }
 
     /**
+     * Sets the rejoin delay.
+     *
+     * @param rejoinDelay The new rejoin delay to set.
+     */
+    public void setRejoinDelay(int rejoinDelay) {
+        this.rejoinDelay = rejoinDelay;
+    }
+
+    /**
      * @return The custom warning message to show the user.
      */
     public Optional<String> getWarningMessage() {
         return Optional.ofNullable(warningMessage)
-                // TODO: Move color code translation to elsewhere?
                 .map(message -> ChatColor.translateAlternateColorCodes('&', message));
+    }
+
+    /**
+     * Sets the warning message.
+     *
+     * @param warningMessage The new warning message to set. Use <code>null</code> to remove.
+     */
+    public void setWarningMessage(String warningMessage) {
+        this.warningMessage = warningMessage;
     }
 
     public Map<String, Object> serialize() {
