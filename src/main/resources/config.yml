@@ -1,2 +1,5 @@
 # The delay in ticks to check for user playtime. (default: 1200, e.g. 1 minute)
 check-delay: 1200
+
+# How many minutes to allow the player to be disconnected for before resetting their join time.
+disconnect-grace-time: 15

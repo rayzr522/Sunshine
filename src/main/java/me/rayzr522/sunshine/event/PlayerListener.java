@@ -8,11 +8,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class PlayerListener implements Listener {
     private final Sunshine plugin;
+
+    private Map<UUID, Long> disconnectTime = new HashMap<>();
 
     public PlayerListener(Sunshine plugin) {
         this.plugin = plugin;
@@ -51,8 +57,16 @@ public class PlayerListener implements Listener {
         Player player = e.getPlayer();
         PlayerSettings settings = plugin.getPlayerSettingsManager().getPlayerSettings(player.getUniqueId());
 
-        // TODO: Don't reset join time if the player has only been off for 10-15 minutes (configurable?) to account for game crashing, etc.
-        settings.setJoinTime(System.currentTimeMillis());
-        settings.setKickTime(-1);
+        long now = System.currentTimeMillis();
+        if (!disconnectTime.containsKey(player.getUniqueId()) || now - disconnectTime.get(player.getUniqueId()) > TimeUnit.MINUTES.toMillis(plugin.getSettings().getDisconnectGraceTime())) {
+            settings.setJoinTime(now);
+            settings.setKickTime(-1);
+            disconnectTime.remove(player.getUniqueId());
+        }
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent e) {
+        disconnectTime.put(e.getPlayer().getUniqueId(), System.currentTimeMillis());
     }
 }

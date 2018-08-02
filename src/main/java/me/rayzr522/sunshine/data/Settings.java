@@ -12,4 +12,8 @@ public class Settings {
     public long getCheckDelay() {
         return config.getLong("check-delay");
     }
+
+    public int getDisconnectGraceTime() {
+        return config.getInt("disconnect-grace-time");
+    }
 }
